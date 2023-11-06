@@ -106,23 +106,6 @@ function ActivityTable({ idArea, onError }) {
             <td><Link to={`/actividad/${value.id}`} className={styles.activityLink}>{value.name}</Link></td>
             <td>{value.serviceHours}</td>
             <td>{`${value.date.slice(8, 10)}-${value.date.slice(5, 7)}-${value.date.slice(0, 4)}`}</td>
-            {/* <td>
-              <div className={styles.cellContainer}>
-
-                <Link to={`/area/${value.asigboArea.id}`}>
-                  {!imageErrors[value.asigboArea.id] ? (
-                    <img
-                      className={styles.areaIcon}
-                      title={value.asigboArea.name}
-                      src={`${serverHost}/${consts.imageRoute.area}/${value.asigboArea.id}`}
-                      alt={value.asigboArea.name}
-                      onError={() => handleImageError(value.asigboArea.id)}
-                    />
-                  ) : <ImageIcon className={styles.defaultIcon} title={value.asigboArea.name} />}
-                </Link>
-
-              </div>
-            </td> */}
           </TableRow>
         ))}
       </Table>
