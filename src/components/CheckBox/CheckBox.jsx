@@ -21,7 +21,11 @@ function CheckBox({ label, onChange, checked }) {
 CheckBox.propTypes = {
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  checked: PropTypes.bool.isRequired,
+  checked: PropTypes.bool,
+};
+
+CheckBox.defaultProps = {
+  checked: false,
 };
 
 export default CheckBox;
