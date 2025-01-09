@@ -15,7 +15,7 @@ function InputDate({
         {...props}
         id={id}
         name={name}
-        defaultValue={value}
+        value={value}
         onChange={onChange}
         onBlur={onBlur}
         onFocus={onFocus}
