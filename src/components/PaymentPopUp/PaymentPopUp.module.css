@@ -3,13 +3,7 @@
     font-weight: 600;
 }
 
-.inputContainer{
-    display: flex;
-    gap: 10px;
-}
-
 .infoText{
-    font-size: 12px;
     font-weight: 600;
     margin-top: 25px;
 }
@@ -23,4 +17,26 @@
     font-weight: 600;
     margin-top: 25px;
     margin-bottom: 25px;
+}
+
+.errorMessage{
+    color: var(--error-color--);
+    width: 100%;
+}
+
+.midSizeInput{
+    width: 50%;
+}
+
+.buttonContainer{
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 400px){
+    .midSizeInput{
+        width: 100%;
+    }
 }

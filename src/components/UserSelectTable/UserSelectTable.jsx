@@ -157,7 +157,7 @@ function UserSelectTable({ defaultSelectedUsers, onChange }) {
   }, [selectedUsers]);
 
   return (
-    <>
+    <div className={styles.userSelectTableContainer}>
       <UserTableFilter
         onChange={handleUserFilterChange}
         showAddAllOption={
@@ -170,6 +170,7 @@ function UserSelectTable({ defaultSelectedUsers, onChange }) {
         }
         onAddAllClick={addAllSelectedUsers}
         onDeleteAllClick={removeAllSelectedUsers}
+        className={styles.userFilters}
       />
       <Table
         header={['No.', '', 'Nombre', '']}
@@ -210,7 +211,7 @@ function UserSelectTable({ defaultSelectedUsers, onChange }) {
           page={currentPage + 1}
         />
       )}
-    </>
+    </div>
   );
 }
 

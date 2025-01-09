@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import PopUp from '@components/PopUp';
 import InputText from '@components/InputText';
@@ -40,8 +40,6 @@ function PaymentPopUp({
   const [isUpdateSuccessOpen, openUpdateSuccess, closeUpdateSuccess] = usePopUp();
   const [isUpdateErrorOpen, openUpdateError, closeUpdateError] = usePopUp();
 
-  const [validTreasurers, setValidTreasurers] = useState(false);
-
   const {
     form: paymentForm,
     error: paymentError,
@@ -49,6 +47,7 @@ function PaymentPopUp({
     validateField: validatePaymentData,
     clearFieldError: clearPaymentError,
     validateForm: validatePaymentForm,
+    clearForm,
   } = useForm(paymentId ? updatePaymentSchema : createPaymentSchema);
 
   const {
@@ -87,6 +86,10 @@ function PaymentPopUp({
     error: errorUpdatePayment,
     result: resultUpdatePayment,
   } = useFetch();
+
+  useEffect(() => {
+    if (!isOpen) clearForm();
+  }, [isOpen]);
 
   useEffect(() => {
     if (activity && !paymentId) {
@@ -219,9 +222,14 @@ function PaymentPopUp({
 
   const loading = loadingPayment || loadingActivityPayment || loadingUpdatePayment;
 
+  // Verficar si el formulario tiene algún error
+  const hasErrors = paymentError && Object.values(paymentError).some(
+    (val) => val !== null && val !== undefined,
+  );
+
   return (
     isOpen && (
-    <PopUp closeWithBackground close={close} maxWidth={700} className={className || ''}>
+    <PopUp closeWithBackground={false} close={close} maxWidth={1000} className={className || ''}>
       <div>
         <h1 className={styles.title}>{paymentId ? 'Actualizar pago' : 'Crear nuevo pago'}</h1>
         {!loadingGetPayment && !errorGetPayment && (
@@ -234,28 +242,28 @@ function PaymentPopUp({
               onBlur={activity && !paymentId ? () => validateActivityPaymentData('name') : () => validatePaymentData('name')}
               onChange={activity && !paymentId ? (e) => setActivityPaymentData('name', e.target.value) : (e) => setPaymentData('name', e.target.value)}
             />
-            <div className={styles.inputContainer}>
-              <InputNumber
-                title="Monto Q"
-                value={activity && !paymentId ? activityPaymentForm?.amount : paymentForm?.amount}
-                error={activity && !paymentId ? activityPaymentError?.amount : paymentError?.amount}
-                onFocus={activity && !paymentId ? () => clearActivityPaymentError('amount') : () => clearPaymentError('amount')}
-                onBlur={activity && !paymentId ? () => validateActivityPaymentData('amount') : () => validatePaymentData('amount')}
-                onChange={activity && !paymentId ? (e) => setActivityPaymentData('amount', e.target.value) : (e) => setPaymentData('amount', e.target.value)}
-                min={0}
-                max={100000}
-              />
-              <InputDate
-                title="Fecha límite de pago"
-                value={activity && !paymentId ? activityPaymentForm?.limitDate
-                  : paymentForm?.limitDate}
-                error={activity && !paymentId ? activityPaymentError?.limitDate
-                  : paymentError?.limitDate}
-                onFocus={activity && !paymentId ? () => clearActivityPaymentError('limitDate') : () => clearPaymentError('limitDate')}
-                onBlur={activity && !paymentId ? () => validateActivityPaymentData('limitDate') : () => validatePaymentData('limitDate')}
-                onChange={activity && !paymentId ? (e) => setActivityPaymentData('limitDate', e.target.value) : (e) => setPaymentData('limitDate', e.target.value)}
-              />
-            </div>
+            <InputNumber
+              title="Monto Q"
+              value={activity && !paymentId ? activityPaymentForm?.amount : paymentForm?.amount}
+              error={activity && !paymentId ? activityPaymentError?.amount : paymentError?.amount}
+              onFocus={activity && !paymentId ? () => clearActivityPaymentError('amount') : () => clearPaymentError('amount')}
+              onBlur={activity && !paymentId ? () => validateActivityPaymentData('amount') : () => validatePaymentData('amount')}
+              onChange={activity && !paymentId ? (e) => setActivityPaymentData('amount', e.target.value) : (e) => setPaymentData('amount', e.target.value)}
+              min={0}
+              max={100000}
+              className={styles.midSizeInput}
+            />
+            <InputDate
+              title="Fecha límite de pago"
+              value={activity && !paymentId ? activityPaymentForm?.limitDate
+                : paymentForm?.limitDate}
+              error={activity && !paymentId ? activityPaymentError?.limitDate
+                : paymentError?.limitDate}
+              onFocus={activity && !paymentId ? () => clearActivityPaymentError('limitDate') : () => clearPaymentError('limitDate')}
+              onBlur={activity && !paymentId ? () => validateActivityPaymentData('limitDate') : () => validatePaymentData('limitDate')}
+              onChange={activity && !paymentId ? (e) => setActivityPaymentData('limitDate', e.target.value) : (e) => setPaymentData('limitDate', e.target.value)}
+              className={styles.midSizeInput}
+            />
             <p className={styles.infoText}>
               En la descripción es importante mencionar detalles como el número de cuenta,
               propietario de la cuenta, el banco y tipo de cuenta a la que se debe de realizar
@@ -280,6 +288,8 @@ function PaymentPopUp({
                 setPaymentData('assignToAll', e.target.checked);
                 if (e.target.checked) {
                   setPaymentData('promotion', consts.promotionsGroups.student);
+                } else {
+                  setPaymentData('promotion', undefined);
                 }
               }}
             />
@@ -294,6 +304,7 @@ function PaymentPopUp({
               onChange={(e) => setPaymentData('promotion', e.target.value)}
               min={2000}
               max={2100}
+              className={styles.midSizeInput}
             />
             )}
             <h3 className={styles.subTitle}>Seleccionar tesoreros</h3>
@@ -302,27 +313,22 @@ function PaymentPopUp({
                 defaultSelectedUsers={resultGetPayment ? resultGetPayment.treasurer : null}
                 onChange={activity && !paymentId ? (value) => {
                   setActivityPaymentData('treasurer', value);
-                  if (value.length === 0) {
-                    setValidTreasurers(false);
-                  } else {
-                    setValidTreasurers(true);
-                  }
                 } : (value) => {
                   setPaymentData('treasurer', value);
-                  if (value.length === 0) {
-                    setValidTreasurers(false);
-                  } else {
-                    setValidTreasurers(true);
-                  }
                 }}
               />
-              {!validTreasurers
-          && (
-          <p className={styles.errorMessage} style={{ marginTop: '25px' }}>
-            Debes seleccionar al menos un tesorero
-          </p>
-          )}
+              {paymentError?.treasurer && (
+                <span className={styles.errorMessage} style={{ marginTop: '25px' }}>
+                  {paymentError.treasurer}
+                </span>
+              )}
             </div>
+
+            {hasErrors && (
+              <span className={styles.errorMessage} style={{ marginTop: '25px' }}>
+                Existen errores en el formulario.
+              </span>
+            )}
             <div className={styles.buttons} style={{ display: 'flex', justifyContent: 'center', marginTop: '25px' }}>
               {loading && (
               <div className={styles.spinnerContainer}>
@@ -330,7 +336,10 @@ function PaymentPopUp({
               </div>
               )}
               {!loading && (
-                <Button text="Confirmar" onClick={paymentId ? handleUpdate : handleSubmit} />
+                <div className={styles.buttonContainer}>
+                  <Button text="Confirmar" onClick={paymentId ? handleUpdate : handleSubmit} />
+                  <Button text="Cancelar" onClick={close} red />
+                </div>
               )}
             </div>
           </>

@@ -23,6 +23,7 @@ import getTokenPayload from '../../helpers/getTokenPayload';
 import UpdateUserInRoutePage from '../UpdateUserInRoutePage/UpdateUserInRoutePage';
 import UserProfileIndexPage from '../UserProfileIndexPage/UserProfileIndexPage';
 import ResponsibleActivitiesPage from '../ResponsibleActivitiesPage';
+import GeneralPaymentsPage from '../GeneralPaymentsPage';
 
 function AdminIndexPage() {
   const token = useToken();
@@ -51,6 +52,7 @@ function AdminIndexPage() {
         <Route path="/panel" element={<WorkPanelPage />} />
         <Route path="/perfil" element={<SimpleUserProfilePage idUser={user.id} />} />
         <Route path="/perfil/editar" element={<UpdateUserPage userId={user.id} />} />
+        <Route path="/pagos" element={<GeneralPaymentsPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </PageContainer>
