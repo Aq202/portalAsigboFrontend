@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 // import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import dayjs from 'dayjs';
@@ -12,9 +12,11 @@ import TableRow from '../../components/TableRow/TableRow';
 import translatePromotion from '../../helpers/translatePromotion';
 import usePopUp from '../../hooks/usePopUp';
 import PaymentPopUp from '../../components/PaymentPopUp/PaymentPopUp';
+import Pagination from '../../components/Pagination/Pagination';
 
 function GeneralPaymentsPage() {
   const token = useToken();
+  const [currentPage, setCurrentPage] = useState(0);
 
   const [isPaymentPopUpOpen, openPaymentPopUp, closePaymentPopUp] = usePopUp(false);
 
@@ -26,8 +28,8 @@ function GeneralPaymentsPage() {
   } = useFetch();
 
   useEffect(() => {
-    fetchPayments({ uri: `${serverHost}/payment`, headers: { authorization: token } });
-  }, []);
+    fetchPayments({ uri: `${serverHost}/payment?page=${currentPage}`, headers: { authorization: token } });
+  }, [currentPage]);
 
   return (
     <div className={styles.generalPaymentsPage}>
@@ -42,7 +44,7 @@ function GeneralPaymentsPage() {
         showNoResults={paymentsError}
         breakPoint="900px"
       >
-        {payments?.map((payment, index) => (
+        {payments?.result?.map((payment, index) => (
           <TableRow key={payment.id} id={payment.id}>
             <td>{index + 1}</td>
             <td><NavLink to={`/pago/${payment.id}`} className={styles.nameLink}>{payment.name}</NavLink></td>
@@ -52,6 +54,12 @@ function GeneralPaymentsPage() {
         ))}
       </Table>
 
+      <Pagination
+        totalPages={payments?.pages}
+        currentPage={currentPage + 1}
+        onChange={(e, page) => setCurrentPage(page - 1)}
+        className={styles.pagination}
+      />
       <PaymentPopUp isOpen={isPaymentPopUpOpen} close={closePaymentPopUp} />
     </div>
   );
