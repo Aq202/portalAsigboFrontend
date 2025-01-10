@@ -43,7 +43,7 @@ function UserPicture({
           onError={() => setImageError(true)}
         />
       ) : (
-        <div className={styles.initialCircle}>{name ? name.charAt(0) : 'X'}</div>
+        <div className={styles.initialCircle}>{name ? name.charAt(0).toUpperCase() : 'X'}</div>
       )}
     </Link>
   );

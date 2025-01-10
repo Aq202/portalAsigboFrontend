@@ -1,0 +1,28 @@
+.paymentDetailsPage{
+  padding: var(--page-vertical-padding--) var(--page-horizontal-padding--);
+  display: flex;
+  flex-direction: column;
+}
+
+.pageTitle{
+  font-size: var(--h1-title-size--);
+}
+.pageHeader{
+  display: flex;
+  justify-content: space-between;
+}
+
+.tabMenu{
+  margin-bottom: 40px;
+}
+
+@media only screen and (max-width: 600px){
+  .pageHeader{
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+  .pageTitle{
+    text-align: center;
+  }
+}

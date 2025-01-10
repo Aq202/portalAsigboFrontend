@@ -45,7 +45,7 @@ function GeneralPaymentsPage() {
         {payments?.map((payment, index) => (
           <TableRow key={payment.id} id={payment.id}>
             <td>{index + 1}</td>
-            <td><NavLink to="/" className={styles.nameLink}>{payment.name}</NavLink></td>
+            <td><NavLink to={`/pago/${payment.id}`} className={styles.nameLink}>{payment.name}</NavLink></td>
             <td>{translatePromotion(payment.targetUsers)}</td>
             <td>{dayjs(payment.limitDate).format('DD/MM/YYYY')}</td>
           </TableRow>
