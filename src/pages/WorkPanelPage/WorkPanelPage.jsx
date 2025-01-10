@@ -1,7 +1,8 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import { HiPuzzlePiece as PuzzleIcon } from 'react-icons/hi2';
-import { FaClipboardList as ListIcon, FaUsers as UsersIcon2 } from 'react-icons/fa';
+import { FaClipboardList as ListIcon, FaUsers as UsersIcon2, FaMoneyCheckAlt as PaymentIcon } from 'react-icons/fa';
+
 import { IoMdSettings as ConfigIcon } from 'react-icons/io';
 import styles from './WorkPanelPage.module.css';
 import PanelItem from '../../components/PanelItem/PanelItem';
@@ -28,6 +29,7 @@ function WorkPanelPage() {
             <>
               <PanelItem icon={<UsersIcon2 />} title="Administración de usuarios" href="/usuario" />
               <PanelItem icon={<ConfigIcon />} title="Configuración" href="/config" />
+              <PanelItem icon={<PaymentIcon />} title="Pagos generales" href="/pago" />
             </>
             )}
 
