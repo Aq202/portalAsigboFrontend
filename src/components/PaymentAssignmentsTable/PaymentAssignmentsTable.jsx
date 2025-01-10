@@ -14,6 +14,7 @@ import InputSearchSelect from '../InputSearchSelect/InputSearchSelect';
 import PromotionsSearchSelect from '../PromotionsSearchSelect/PromotionsSearchSelect';
 import SearchInput from '../SearchInput/SearchInput';
 import Pagination from '../Pagination/Pagination';
+import Button from '../Button/Button';
 
 function PaymentAssignmentsTable({ idPayment }) {
   const token = useToken();
@@ -127,7 +128,7 @@ function PaymentAssignmentsTable({ idPayment }) {
             </td>
             <td className={styles.buttonRow}>
               <Link to={`/pago/asignacion/${assignment.id}`}>
-                <button type="button" className={styles.assignmentDetailsButton}>Ver asignación</button>
+                <Button tableButton type="button" className={styles.assignmentDetailsButton}>Ver asignación</Button>
               </Link>
             </td>
           </TableRow>

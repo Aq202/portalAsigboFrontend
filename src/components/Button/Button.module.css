@@ -72,3 +72,19 @@
 .button.button.emptyBlue:hover {
   color: #1d45ac;
 }
+
+.button.tableButton{
+  padding: 7px 10px;
+  background-color: transparent;
+  outline: none;
+  border: 1px rgb(171, 171, 171) solid;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: inherit;
+  color: black;
+  font-size: 13px;
+}
+
+.button.tableButton:hover{
+  background-color: rgb(233, 233, 233);
+}
