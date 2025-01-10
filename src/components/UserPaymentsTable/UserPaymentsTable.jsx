@@ -12,7 +12,13 @@ import TableRow from '../TableRow/TableRow';
 import Button from '../Button/Button';
 import Pagination from '../Pagination/Pagination';
 
-function UserPaymentsTable({ idUser }) {
+/**
+ * Tabla de pagos de un usuario.
+ * @param {string} idUser - ID del usuario.
+ * @param {bool} userProfile - Indica si la tabla es utilizada en el perfil del usuario. Def false.
+ * @returns
+ */
+function UserPaymentsTable({ idUser, userProfile }) {
   const [paymentState, setPaymentState] = useState('');
   const [currentPage, setCurrentPage] = useState(0);
   const [outstandingPayments, setOutstandingPayments] = useState(null);
@@ -106,7 +112,7 @@ function UserPaymentsTable({ idUser }) {
               </span>
             </td>
             <td className={styles.buttonRow}>
-              <Link to={`/pago/asignacion/${paymentAssign.id}`}>
+              <Link to={userProfile ? `/pago/asignacion/${paymentAssign.id}` : `/mis-pagos/${paymentAssign.id}`}>
                 <Button tableButton type="button" className={styles.assignmentDetailsButton}>Ver asignación</Button>
               </Link>
             </td>
@@ -127,8 +133,9 @@ export default UserPaymentsTable;
 
 UserPaymentsTable.propTypes = {
   idUser: PropTypes.string.isRequired,
+  userProfile: PropTypes.bool,
 };
 
 UserPaymentsTable.defaultProps = {
-
+  userProfile: false,
 };
