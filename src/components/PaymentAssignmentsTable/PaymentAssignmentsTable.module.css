@@ -1,0 +1,92 @@
+
+.filtersContainer{
+  display: flex;
+  justify-content: end;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.selectInput{
+  width: 250px;
+}
+.searchInput{
+  width: 300px;
+}
+
+.nameRow{
+  text-align: left;
+  order: 0;
+  border-bottom:0 !important;
+}
+
+.pictureRow{
+  display: flex !important;
+  justify-content: end;
+  order:1;
+}
+
+.statusRow{
+  order: 2;
+}
+
+.confirmedStatus span{
+  color: green;
+}
+
+.completedStatus span{
+  color: blue;
+}
+
+.pendingStatus span{
+  color: red;
+}
+
+.buttonRow{
+  order: 3;
+}
+
+.assignmentDetailsButton{
+  padding: 7px 10px;
+  background-color: transparent;
+  outline: none;
+  border: 1px rgb(171, 171, 171) solid;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.assignmentDetailsButton:hover{
+  background-color: rgb(233, 233, 233);
+}
+
+.pagination{
+  margin: 20px auto 0 auto;
+  width: fit-content;
+}
+
+
+/*El breakpoint debe coinicidir con el de la table*/
+@media only screen and (max-width: 900px){
+  .picture{
+    width: 100%;
+  }
+
+  .statusRow{
+    border: none !important;
+  }
+}
+
+@media only screen and (max-width: 650px){
+  .filtersContainer{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .selectInput{
+    width: 100%;
+  }
+  .searchInput{
+    width: 100%;
+  }
+}

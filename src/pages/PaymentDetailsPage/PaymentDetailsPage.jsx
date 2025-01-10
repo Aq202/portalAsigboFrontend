@@ -10,6 +10,7 @@ import { serverHost } from '../../config';
 import useToken from '../../hooks/useToken';
 import LoadingView from '../../components/LoadingView';
 import NotFoundPage from '../NotFoundPage';
+import PaymentAssignmentsTable from '../../components/PaymentAssignmentsTable/PaymentAssignmentsTable';
 
 function PaymentDetailsPage() {
   const { idPago: idPayment } = useParams();
@@ -59,6 +60,12 @@ function PaymentDetailsPage() {
                 treasurers={payment.treasurer}
               />
       )}
+          />
+          <Route
+            path="asignaciones"
+            element={
+              <PaymentAssignmentsTable idPayment={idPayment} />
+          }
           />
         </Routes>
       </div>
