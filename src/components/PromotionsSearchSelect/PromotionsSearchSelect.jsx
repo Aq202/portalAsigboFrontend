@@ -4,7 +4,7 @@ import useFetch from '../../hooks/useFetch';
 import useToken from '../../hooks/useToken';
 import { serverHost } from '../../config';
 import InputSearchSelect from '../InputSearchSelect/InputSearchSelect';
-import consts from '../../helpers/consts';
+import translatePromotion from '../../helpers/translatePromotion';
 
 function PromotionsSearchSelect({
   value, onChange, disabled, className,
@@ -23,18 +23,18 @@ function PromotionsSearchSelect({
   return (
     <InputSearchSelect
       className={className}
-      placeholder="Promoción"
+      placeholder="Promoción (todos)"
       value={value}
       onChange={(e) => { if (onChange) onChange(e.target.value); }}
       options={
             promotions
               ? [
                 ...promotions.notStudents.map(
-                  (val) => ({ value: val, title: consts.promotionsGroups[val] }),
+                  (val) => ({ value: val, title: translatePromotion(val) }),
                 ),
                 {
                   value: promotions.students.id,
-                  title: consts.promotionsGroups[promotions.students.id],
+                  title: translatePromotion(promotions.students.id),
                 },
                 ...promotions.students.years.map((year) => ({ value: `${year}`, title: `${year}` })),
               ]
