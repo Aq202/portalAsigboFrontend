@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { IoLogOut, IoCalendarNumber as CalendarIcon } from 'react-icons/io5';
 import { HiHome } from 'react-icons/hi';
-import { MdSpaceDashboard as DashboardIcon } from 'react-icons/md';
-// import {MdOutlinePayment as PaymentIcon } from 'react-icons/md';
+import { MdSpaceDashboard as DashboardIcon, MdOutlinePayment as PaymentIcon } from 'react-icons/md';
+
 import { NavLink } from 'react-router-dom';
 import styles from './NavMenu.module.css';
 import UserPicture from '../../UserPicture';
@@ -67,9 +67,9 @@ function NavMenu({
           <NavLink to="/actividad/disponible" onClick={toggler || undefined}>
             <NavMenuButton icon={<CalendarIcon />} label="Actividades" className={styles.optionIcon} />
           </NavLink>
-          {/* <NavLink to="/pago" onClick={toggler || undefined}>
+          <NavLink to="/mis-pagos" onClick={toggler || undefined}>
             <NavMenuButton icon={<PaymentIcon />} label="Pagos" className={styles.optionIcon} />
-          </NavLink> */}
+          </NavLink>
 
         </div>
         <div className={styles.sessionButtons}>

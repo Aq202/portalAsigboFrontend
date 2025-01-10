@@ -1,0 +1,69 @@
+.userPaymentsTableContainer{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.outstandingPaymentsContainer{
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+
+}
+
+.outstandingPaymentsItem{
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 1px 1px rgb(214, 214, 214);
+  max-width: 300px;
+  flex-grow: 1;
+}
+
+.outstandingPaymentsItem .itemTitle{
+  white-space: nowrap;
+}
+
+.outstandingPaymentsItem .itemValue{
+  font-size: 25px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+.filterContainer{
+  display: flex;
+  justify-content: end;
+  width: 100%;
+}
+
+.filterContainer .selectInput{
+  width: 250px;
+}
+
+.pagination{
+  width: fit-content;
+  margin: auto;
+}
+
+.confirmedStatus span{
+  color: green;
+}
+
+.completedStatus span{
+  color: blue;
+}
+
+.pendingStatus span{
+  color: red;
+}
+
+@media only screen and (max-width: 500px){
+  .filterContainer .selectInput{
+    width: 100%;
+  }
+
+  .outstandingPaymentsContainer{
+    text-align: center;
+  }
+
+}

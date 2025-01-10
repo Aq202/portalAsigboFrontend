@@ -17,6 +17,7 @@ import UserProfileIndexPage from '../UserProfileIndexPage/UserProfileIndexPage';
 import ResponsibleActivitiesPage from '../ResponsibleActivitiesPage';
 import NewActivityPage from '../NewActivityPage/NewActivityPage';
 import ActivityAssignmentDetailsPage from '../ActivityAssignmentDetailsPage/ActivityAssignmentDetailsPage';
+import UserPaymentsPage from '../UserPaymentsPage/UserPaymentsPage';
 
 function UserIndexPage() {
   const token = useToken();
@@ -37,6 +38,7 @@ function UserIndexPage() {
         <Route path="/usuario/:userId" element={<UserProfileIndexPage />} />
         <Route path="actividad/encargadas" element={<ResponsibleActivitiesPage />} />
         <Route path="/actividad/disponible/*" element={<AvailableActivitiesPage />} />
+        <Route path="/mis-pagos" element={<UserPaymentsPage />} />
 
         {
           isAreaResponsible

@@ -1,0 +1,12 @@
+.userPaymentsPage{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: var(--page-vertical-padding--) var(--page-horizontal-padding--);
+}
+
+@media only screen and (max-width:500px){
+  .pageTitle{
+    text-align: center;
+  }
+}

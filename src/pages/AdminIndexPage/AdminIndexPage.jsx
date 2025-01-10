@@ -25,6 +25,7 @@ import UserProfileIndexPage from '../UserProfileIndexPage/UserProfileIndexPage';
 import ResponsibleActivitiesPage from '../ResponsibleActivitiesPage';
 import GeneralPaymentsPage from '../GeneralPaymentsPage';
 import PaymentDetailsPage from '../PaymentDetailsPage/PaymentDetailsPage';
+import UserPaymentsPage from '../UserPaymentsPage/UserPaymentsPage';
 
 function AdminIndexPage() {
   const token = useToken();
@@ -55,6 +56,7 @@ function AdminIndexPage() {
         <Route path="/perfil/editar" element={<UpdateUserPage userId={user.id} />} />
         <Route path="/pago" element={<GeneralPaymentsPage />} />
         <Route path="/pago/:idPago/*" element={<PaymentDetailsPage />} />
+        <Route path="/mis-pagos" element={<UserPaymentsPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </PageContainer>
