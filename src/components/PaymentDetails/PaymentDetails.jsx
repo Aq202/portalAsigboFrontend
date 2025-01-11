@@ -15,21 +15,23 @@ function PaymentDetails({
       <DataField label="Monto Q">{amount}</DataField>
       <DataField label="Fecha límite de pago">{dayjs(limitDate).format('DD/MM/YYYY')}</DataField>
       <DataField label="Descripción" className={styles.completeRow}>{description}</DataField>
-      <span className={`${styles.dataLabel} ${styles.completeRow}`}>Tesoreros</span>
-      {treasurers && (
-      <ul className={`${styles.treasurerList} ${styles.completeRow}`}>
-        {treasurers.map((treasurer) => (
-          <li key={treasurer.id} className={styles.treasurerItem}>
-            <UserPicture
-              idUser={treasurer.id}
-              name={treasurer.name}
-              hasImage={treasurer.hasImage ?? false}
-              className={styles.treasurerPicture}
-            />
-            <UserNameLink idUser={treasurer.id} name={`${treasurer.name} ${treasurer.lastname}`} />
-          </li>
-        ))}
-      </ul>
+      {treasurers && treasurers.length > 0 && (
+        <>
+          <span className={`${styles.dataLabel} ${styles.completeRow}`}>Tesoreros</span>
+          <ul className={`${styles.treasurerList} ${styles.completeRow}`}>
+            {treasurers.map((treasurer) => (
+              <li key={treasurer.id} className={styles.treasurerItem}>
+                <UserPicture
+                  idUser={treasurer.id}
+                  name={treasurer.name}
+                  hasImage={treasurer.hasImage ?? false}
+                  className={styles.treasurerPicture}
+                />
+                <UserNameLink idUser={treasurer.id} name={`${treasurer.name} ${treasurer.lastname}`} />
+              </li>
+            ))}
+          </ul>
+        </>
       )}
     </div>
   );
@@ -47,9 +49,9 @@ PaymentDetails.propTypes = {
     name: PropTypes.string.isRequired,
     lastname: PropTypes.string.isRequired,
     hasImage: PropTypes.bool,
-  })).isRequired,
+  })),
 };
 
 PaymentDetails.defaultProps = {
-
+  treasurers: null,
 };

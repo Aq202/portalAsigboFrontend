@@ -26,6 +26,7 @@ import ResponsibleActivitiesPage from '../ResponsibleActivitiesPage';
 import GeneralPaymentsPage from '../GeneralPaymentsPage';
 import PaymentDetailsPage from '../PaymentDetailsPage/PaymentDetailsPage';
 import UserPaymentsPage from '../UserPaymentsPage/UserPaymentsPage';
+import MakePaymentPage from '../MakePaymentPage/MakePaymentPage';
 
 function AdminIndexPage() {
   const token = useToken();
@@ -57,6 +58,7 @@ function AdminIndexPage() {
         <Route path="/pago" element={<GeneralPaymentsPage />} />
         <Route path="/pago/:idPago/*" element={<PaymentDetailsPage />} />
         <Route path="/mis-pagos" element={<UserPaymentsPage />} />
+        <Route path="/mis-pagos/:idPaymentAssignment" element={<MakePaymentPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </PageContainer>

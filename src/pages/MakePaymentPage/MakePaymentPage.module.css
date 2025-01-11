@@ -1,0 +1,34 @@
+.makePaymentPage{
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: var(--page-vertical-padding--) var(--page-horizontal-padding--);
+}
+
+.pageTitle{
+  font-size: var(--h1-title-size--);
+}
+
+.subtitle{
+  font-size: var(--h3-title-size--);
+}
+
+.sendButton{
+  width: 200px;
+  margin: auto;
+  margin-top: 30px;
+}
+
+.error{
+  color: var(--error-color--);
+}
+
+.completedMessage{
+  margin-top: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+  .pageTitle, .subtitle{
+    text-align: center;
+  }
+}

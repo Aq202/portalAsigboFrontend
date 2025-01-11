@@ -1,0 +1,35 @@
+.paymentStatusMessage{
+  display: flex;
+  gap: 15px;
+  border-radius: 7px;
+  border: 1px solid black;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #FFF3CD;
+  width: fit-content;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+}
+
+.paymentStatusMessage.completed{
+  background-color: #e6ebf9;
+  border-color: #b0b9f0;
+}
+.paymentStatusMessage.confirmed{
+  background-color: #D4EDDA;
+  border-color: #00761c;
+}
+
+.icon{
+  font-size: 25px;
+}
+
+.link{
+  color: blue;
+  white-space: nowrap;
+}
+
+.link:hover{
+  text-decoration: underline;
+}
