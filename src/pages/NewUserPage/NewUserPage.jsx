@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import NavMenuButton from '@components/PageContainer/NavMenuButton/NavMenuButton';
 import InputText from '@components/InputText';
 import { useNavigate } from 'react-router-dom';
-import CSVICon from '../../assets/icons/CSVIcon';
+import { PiMicrosoftExcelLogoFill as ExcelIcon } from 'react-icons/pi';
 import Spinner from '../../components/Spinner/Spinner';
 import Button from '../../components/Button/Button';
 import InputSelect from '../../components/InputSelect/InputSelect';
@@ -19,7 +19,7 @@ import { serverHost } from '../../config';
 import createUserSchema from './createUserSchema';
 import SuccessNotificationPopUp from '../../components/SuccessNotificationPopUp/SuccessNotificationPopUp';
 import ErrorNotificationPopUp from '../../components/ErrorNotificationPopUp/ErrorNotificationPopUp';
-import ImportCSVPopUp from '../../components/ImportCSVPopUp/ImportCSVPopUp';
+import ImportUsersPopUp from '../../components/ImportUsersPopUp';
 
 function NewUserPage() {
   const token = useToken();
@@ -98,7 +98,7 @@ function NewUserPage() {
         >
           <NavMenuButton
             className={styles.navMenuButton}
-            icon={<CSVICon fill="#16337F" width="75%" height="75%" />}
+            icon={<ExcelIcon className={styles.importIcon} />}
           />
         </div>
       </div>
@@ -195,7 +195,7 @@ function NewUserPage() {
             <Button text="Registrar becado" type="submit" />
             <div className={styles.csvButtonWrapper} onClick={() => setOpenImport(true)}>
               <div className={styles.csvIconWrapper}>
-                <CSVICon fill="#16337F" className={styles.csvIconSmall} />
+                <ExcelIcon className={styles.importIconSmall} />
               </div>
               <button type="button" className={styles.csvButton}>Importar usuarios desde archivo</button>
             </div>
@@ -222,7 +222,7 @@ function NewUserPage() {
         text={errorPostUser?.message}
       />
 
-      <ImportCSVPopUp
+      <ImportUsersPopUp
         isOpen={openImport}
         close={() => setOpenImport(false)}
       />

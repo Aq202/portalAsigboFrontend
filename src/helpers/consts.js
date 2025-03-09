@@ -18,7 +18,8 @@ export default {
     activity: 'image/activity',
     assignment: 'image/assignment',
   },
-  csvHeaders: ['Código', 'Nombres', 'Apellidos', 'Correo', 'Promoción', 'Carrera', 'Universidad', 'Campus', 'Sexo'],
+  importHeaders: ['Nombres', 'Apellidos', 'Correo', 'Promoción', 'Carrera', 'Universidad', 'Campus', 'Sexo'],
+  usersTemplateFile: 'plantilla-importar-usuarios-asigbo.xlsx',
   sex: {
     masculine: 'M',
     femenine: 'F',

@@ -11,7 +11,7 @@ import Button from '../Button/Button';
 import InputNumber from '../InputNumber/InputNumber';
 
 function UserDataPopUp({
-  close, isOpen, onSubmit, info, codes,
+  close, isOpen, onSubmit, info,
 }) {
   const [disabledForm, setDisabledForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(undefined);
@@ -21,7 +21,6 @@ function UserDataPopUp({
   } = useForm(createUserSchema);
 
   useEffect(() => {
-    setData('code', info.code);
     setData('name', info.name);
     setData('lastname', info.lastname);
     setData('email', info.email);
@@ -41,10 +40,7 @@ function UserDataPopUp({
     event.preventDefault();
     const formErrors = await validateForm();
     if (formErrors) return;
-    if (form.code !== info.code && codes.includes(form.code)) {
-      setErrorMessage('Este código ya está siendo utilizado por otro elemento de la lista.');
-      return;
-    }
+
     setErrorMessage(undefined);
     onSubmit(info, { id: info.id, ...form });
     setDisabledForm(true);
@@ -60,19 +56,6 @@ function UserDataPopUp({
       <PopUp closeWithBackground={false} close={cleanAndClose} maxWidth={700}>
         <h1 className={styles.title}>Editar usuario</h1>
         <form className={styles.form} onSubmit={handleSubmit}>
-          <InputNumber
-            name="code"
-            value={form?.code}
-            error={error?.code}
-            onChange={handleFormChange}
-            onFocus={() => clearFieldError('code')}
-            onBlur={() => validateField('code')}
-            title="Código"
-            disabled={disabledForm}
-            min={0}
-            max={100000}
-            className={styles.smallInput}
-          />
           <InputText
             title="Nombres"
             name="name"
@@ -180,7 +163,6 @@ UserDataPopUp.propTypes = {
   close: PropTypes.func.isRequired,
   isOpen: PropTypes.bool,
   onSubmit: PropTypes.func.isRequired,
-  codes: PropTypes.arrayOf(PropTypes.string).isRequired,
   info: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 

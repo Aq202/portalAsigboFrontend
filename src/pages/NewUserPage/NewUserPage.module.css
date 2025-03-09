@@ -78,6 +78,16 @@
     align-items: center;
 }
 
+.importIcon{
+    color: var(--blue-theme-color--);
+    font-size: 45px;
+}
+
+.importIconSmall{
+    color: var(--blue-theme-color--);
+    font-size: 25px;
+}
+
 @media only screen and (max-width: 765px) {
     .newUserPage {
         align-items: center;
@@ -183,6 +193,8 @@
 
 .csvIconWrapper{
     max-width: 20px;
+    display: flex;
+    align-items: center;
 }
 
 @media only screen and (min-width: 765px) {

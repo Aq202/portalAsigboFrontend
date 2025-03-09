@@ -26,7 +26,6 @@ function ImportUsersPage() {
   const format = (rawData) => (
     rawData.map((info, index) => ({
       id: `${info['Código']}-${index}`,
-      code: info['Código'],
       name: info.Nombres,
       lastname: info.Apellidos,
       university: info.Universidad,
@@ -113,8 +112,10 @@ function ImportUsersPage() {
       <div className={styles.headerContainer}>
         <h1 className={styles.pageTitle}>Importar usuarios desde archivo</h1>
         <p className={styles.titleText}>
-          Verifica que la información cargada sea la correcta. Cuando termines,
-          guarda los registros en la base de datos.
+          Verifica que la información cargada sea la correcta. Para modificar los datos de un
+          becado, haz clic en la fila correspondiente.
+          <br />
+          Cuando termines presiona guardar para crear los nuevos usuarios.
         </p>
       </div>
       <Table
@@ -200,7 +201,6 @@ function ImportUsersPage() {
           key={user.id}
           isOpen={openForm === index}
           info={user}
-          codes={importedData.map((el) => el.code)}
           close={() => setOpenForm(null)}
           onSubmit={onFormSubmit}
         />
