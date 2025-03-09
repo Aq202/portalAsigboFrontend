@@ -106,7 +106,7 @@ function NewUserPage() {
         <div className={styles.arrowUp} />
         <div className={styles.csvInfo}>
           ¿Creando múltiples usuarios?
-          Presiona aquí para subir un archivo CSV con los datos de todos
+          Presiona aquí para subir un archivo de excel con los datos de todos
           los becados que necesitan un nuevo usuario
         </div>
       </div>
